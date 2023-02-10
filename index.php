@@ -1,10 +1,12 @@
 <?php
 session_start();
-include 'head.php';
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['loggedin'])) {
     header('Location: login.php');
     exit;
 }
+include 'head.php';
+
+
 ?>
 
 <?php

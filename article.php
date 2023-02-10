@@ -1,11 +1,13 @@
 <?php
-include('head.php');
-include 'nav.php';
-
-if (!isset($_SESSION['id'])) {
+session_start();
+if (!isset($_SESSION['loggedin'])) {
   header('Location: login.php');
   exit;
 }
+
+include('head.php');
+include 'nav.php';
+
 ?>
 <div class="Layout Layout--sidebarPosition-start m-4 Layout--divided">
   <div class="Layout-sidebar p-2">

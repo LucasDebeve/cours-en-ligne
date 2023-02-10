@@ -1,22 +1,18 @@
 <?php
 session_start();
-include 'head.php';
-?>
-
-<?php
-include 'nav.php';
-
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['loggedin'])) {
     header('Location: login.php');
     exit;
+} else if (isset($_SESSION['loggedin']) && $_SESSION['role'] !== 1) {
+    header('Location: index.php');
+    exit;
 }
+include 'head.php';
 
-if (!isset($_SESSION['id']) && $_SESSION['role'] !== 1) {
-    echo "<script>alert('Halte là ! Interdiction de venir sur cette page.'); location.href='login.php';</script>";
-    echo 'Non non non...';
-} else {
-    include 'writeForm.php';
-}
+include 'nav.php';
+
+include 'writeForm.php';
+
 
 
 include 'footer.php';

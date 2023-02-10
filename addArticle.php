@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['loggedin'])) {
     header('Location: login.php');
     exit;
 }
@@ -51,4 +51,5 @@ try {
 }
 
 echo '</span></div>';
+include('footer.php');
 ?>
