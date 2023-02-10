@@ -53,7 +53,7 @@
                             </button>
                         </header>
                         <div class="SelectMenu-list">
-                            <a class="SelectMenu-item" role="menuitem">Profile</a>
+                            <a class="SelectMenu-item" role="menuitem" href="profile.php">Profile</a>
                             <a class="SelectMenu-item" role="menuitem" href="login.php">Se connecter</a>
                         </div>
                     </div>

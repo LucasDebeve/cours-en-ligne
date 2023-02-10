@@ -24,7 +24,7 @@ if (isset($_POST['nom']) && $_POST['prenom'] && isset($_POST['password'])) {
     if ($result) {
         $nom = $result['nom'];
         $prenom = $result['prnm'];
-        $role = $result['role'];
+        $role = $result['idRole'];
         session_regenerate_id();
         $_SESSION['loggedin'] = TRUE;
         $_SESSION['name'] = ucwords($nom.' '.$prenom);
