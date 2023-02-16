@@ -10,29 +10,27 @@ try {
     die('Erreur : ' . $e->getMessage());
 }
 
-if (isset($_POST['nom']) && $_POST['prenom'] && isset($_POST['password'])) {
-    $name = $_POST['nom'];
-    $firstname = $_POST['prenom'];
-    $password = $_POST['password'];
-
-    $sql = "SELECT * FROM user WHERE UPPER(nom) = UPPER(?) AND UPPER(prnm) = UPPER(?) AND mdp = ?";
+if (isset($_POST['password']) && isset($_POST['username'])) {
+    $username = $_POST['username'];
+    $sql = "SELECT * FROM user WHERE username = ?";
     $req = $bd->prepare($sql);
-    $req->execute([$name, $firstname, $password]);
+    $req->execute([$username]);
     $req->setFetchMode(PDO::FETCH_ASSOC);
     $result = $req->fetch();
 
-    if ($result) {
+    if ($result && password_verify($_POST['password'], $result['mdp'])) {
         $nom = $result['nom'];
         $prenom = $result['prnm'];
         $role = $result['idRole'];
         session_regenerate_id();
         $_SESSION['loggedin'] = TRUE;
-        $_SESSION['name'] = ucwords($nom.' '.$prenom);
+        $_SESSION['name'] = $username;
         $_SESSION['role'] = $role;
         $_SESSION['id'] = $result['idUser'];
         header('Location: index.php');
     } else {
-        echo 'Invalid username or password';
+        header('Location: login.php');
+        exit;
     }
 }
 ?>

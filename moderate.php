@@ -7,13 +7,12 @@ if (!isset($_SESSION['loggedin'])) {
     header('Location: index.php');
     exit;
 }
-include 'head.php';
 
-include 'nav.php';
+include('head.php');
+include('nav.php');
 
-include 'writeForm.php';
+include('dashboard.php');
 
+include('footer.php');
 
-
-include 'footer.php';
 ?>
